@@ -1,0 +1,15 @@
+\section{Significance of the study}
+
+I have not found anyone else trying to use a code prediction metric in real code reviews
+\todo{I am sure someone must have done this. Find it.}
+so that might be a complete novel thing. %rto: check this out carefully. 
+
+%rto: language agnostic, but you only use Java?
+As discussed in \ref{subsec:comparing_metric}, Linespots is the first metric for bug prediction, that works language-agnostic and at the same time offers a finer granularity than the file level. This is relevant, as most metrics can only be used with object-oriented languages and are mainly studied on Java projects. %rto: Like you plan to do?
+
+Other process metrics have also only been applied to classes or modules in programs and although similar concepts exist in many modern languages the tools have to be written on a per case basis.
+
+I found some papers that work on a `per change' basis, essentially per commit or hunk (part of a commit) which comes closer. See \cite{5431727} for example.
+
+This thesis might also be super interesting as everything I have seen so far has only done bug predictions in Java. (again, someone somewhere probably tried something else, I just have to find it). So this is one of the few (or maybe really the first?) study to apply this to non java things.
+% rto: Check my sys rev and other SLRs if you can find any?

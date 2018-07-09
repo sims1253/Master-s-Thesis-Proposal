@@ -1,0 +1,55 @@
+\documentclass{article}
+
+%Taken from the latex template
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{parskip}
+\setlength{\parskip}{10pt} 
+\usepackage{tikz}
+\usetikzlibrary{arrows, decorations.markings}
+\usepackage{chngcntr}
+\counterwithout{figure}{section}
+
+%changed from natbib
+\usepackage[
+    backend=biber,
+    style=ieee,
+    maxcitenames=2,
+    mincitenames=1,
+    sorting=ynt
+    ]{biblatex}
+\addbibresource{bibfile.bib}
+
+%Packages added by me
+\usepackage{todonotes}
+\usepackage{tabularx}
+
+\begin{document}
+
+\listoftodos
+
+\input{00_title.tex}
+
+\input{10_gqm.tex}
+
+\input{01_introduction.tex}
+
+\input{02_problem.tex}
+
+\input{03_purpose.tex}
+
+\input{04_literature.tex}
+
+\input{05_questions.tex}
+
+\input{06_design.tex}
+
+\input{07_limits.tex}
+
+\input{08_significance.tex}
+
+\input{09_references.tex}
+
+\end{document}

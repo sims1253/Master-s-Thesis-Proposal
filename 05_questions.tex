@@ -1,0 +1,61 @@
+\section{Research question and/or Hypotheses}
+
+\subsection*{RQ1: What kind of weighting function produces the best results for Linespots in regards to cost-effectiveness?}
+\label{sec:rq1}
+%rto: define cost-effectiveness before using it.
+The currently used exponential function is based on Bugspots \cite{bugspots}. Maybe something else works better? Maybe depending on the domain, there are differences?
+
+Metrics:
+\begin{itemize}
+    \item Cost-effectiveness curve (CEC), area under cost-effectiveness curve (AUCEC)
+\end{itemize}
+
+
+\subsection{RQ2: How does using the commit position instead of commit age for weighting influence the performance of Linespots in regards to cost-effectiveness?}
+\label{sec:rq2}
+
+This is one of the ideas from the initial thesis and one that came up a lot during discussions. I assume that the difference will not be big in most cases, but depending on the frequency of commits in a project and the weighting function the influence might meaningful.
+
+Metrics:
+\begin{itemize}
+    \item Cost-effectiveness curve (CEC), area under cost-effectiveness curve (AUCEC)
+\end{itemize}
+
+
+\subsection*{RQ3: What is a good mean\slash median cut-of-point for classification concerning Linespots in regards to cost-effectiveness?}
+\label{sec:rq3}
+
+As some might be interested in using Linespots as a classifier, given a default cut-of-point might be useful. This could be either done at a percentage of lines of code or using some method based on the line rankings such as every line ranked higher than two standard deviations from the mean\slash median score.
+
+Metrics:
+\begin{itemize}
+    \item Cost-effectiveness curve (CEC), area under cost-effectiveness curve (AUCEC)
+\end{itemize}
+
+
+\subsection*{RQ4: What is the prediction performance of Linespots?}
+\label{sec:rq4}
+
+The ultimate question about how good Linespots is for predicting bugs. This is obviously interesting as the usefulness of Linespots hinges on this question.
+
+Metrics:
+\begin{itemize}
+    \item Cost-effectiveness curve (CEC), area under cost-effectiveness curve (AUCEC)
+    \item Receiver operating characteristic (ROC), area under receiver operating characteristic (AUROC)
+    \item \todo{Not sure if this and next one are applicable as it is a ranking vs.\ classes comparison} Average relative error (ARE)
+    \item The model's out-of-sample prediction power. %rto: ?
+    %\item Significance of difference between predicted and observed: Spearmans, Pearsons, Chi Square 
+\end{itemize}
+
+%rto: elaborate on the below. Don't understand.
+And using the cut-of-point from \hyperref[sec:rq3]{RQ3} as well as 20\% LOC:
+\begin{itemize}
+    \item Accuracy
+    \item Precision
+    \item Recall
+    \item F1 score (maybe?)
+    \item Type I\slash II miss-classifications %true positive/false positive
+    \item Out-of-sample prediction of the model compared to other models. %rto: ?
+\end{itemize}
+
+TBC

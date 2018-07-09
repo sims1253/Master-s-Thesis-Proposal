@@ -1,0 +1,9 @@
+\section{Introduction}
+%rto Use the definitions: Fault, Failure, Error, i.e., in your case you're after faults, that lead to failures, and the faults are introduced by an error a human did.
+Faults present an ongoing threat to a software systems reliability and as developer time is a limited resource, we need tools to help us allocate this resource as effective as possible. One of the available tools is the prediction of faults in the source code. If we are able to correctly predict the location of a bug, a developer can then specifically review a delimited amount of code and save time.
+
+Different metrics for the prediction of faults include source code based metrics like complexity, object-oriented metrics like class size, process-oriented metrics that use information about which developer works on what code, and metrics that use information about where faults happened in the past. Besides these, fairly easy to compute metrics, there are more complex ones that use ideas from information theory like entropy, but those need a lot more compute power.%rto reference
+
+Research has shown, that good models for bug prediction combine multiple of these metrics as they bring complementing information into the picture. One of the decisions to make is which metrics to choose. Ideally one would choose metrics that have good prediction power and do not overlap too much in the information they bring to the model.
+
+For Linespots, a novel approach to the `past faults' metric, the information about how good a predictor it is compared to other `past bug' metrics is not well researched and there is as far as we can tell\todo{Maybe there is info for bugCache, Bugspots or the like?} no information about the overlap it has with other classes of metrics. The goal of this thesis is to evaluate the prediction power of Linespots, compare the prediction of Linespots to metrics from other classes and analyze the impact the information from Linespots has on code reviews.

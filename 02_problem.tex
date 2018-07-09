@@ -1,0 +1,8 @@
+\section{Statement of the problem} 
+
+When building a model for bug prediction, one has to choose which metrics to include. There is a trade of in this decision, as more metrics can mean more information to the model to make better predictions, but more metrics also means a more complex model, which takes more computational power, provides lower understandability, and requires more effort\slash cost to use and maintain.
+
+The term feature selection is used in statistics and machine learning to describe the process of choosing only those, e.g., metrics, that are most valuable for our model, to restrict model complexity. To make the initial decision about what metrics to include, an engineer needs information about the pros and cons of each metric, what information they offer, how expensive they are to compute, what data it needs and the cost of collecting that data, and if they are complementing each other or are merely a proxy for the same information.
+
+As Linespots is a recently proposed version of the `past bugs' metric family, some of these properties are not yet known or well understood as they might differ from other metrics in this family, or there has been no research in that direction at all. This poses the problem, that someone wanting to do bug prediction cannot know if Linespots is the right metric for the given scenario or not. Furthermore, for other researchers, these questions are also relevant, as without the answers, it is unclear if Linespots is a metric worth developing further.
+\todo{Add problems with the initial thesis here?}

@@ -1,0 +1,11 @@
+\section{Review of the literature }
+
+In 2011, \textcite{Rahman:2011:BIH:2025113.2025157} found that a very simple ranking of source files based on the number of past bugs in those files was almost as good for predicting future bugs as the more complex BugCache algorithm they were developing. Based on this, Google proposed their Bugspots algorithm \cite{bugspots} that added a weight decay for older bugs to that basic idea. Both of these algorithms are proposing whole files for inspection, something that comes with a lot of overhead of non-buggy lines.
+
+The above was the basis for my bachelors thesis \cite{scholz2016line} that applied the past bugs idea to individual lines of code and showed promising improvements in hit density.
+
+The the evaluation criteria will be taken from the proposed ones by \textcite{6035727} and \textcite{ARISHOLM20102} to allow better comparison to other research.
+
+The metrics used to compare Linespots against, will be based on the research of \textcite{6035727}, \textcite{RADJENOVIC20131397}, and \textcite{5463279}, as they offer a broad picture over the landscape of bug prediction metrics and how they relate to each other.
+
+The projects used to compare the different metrics will be based on the original Linespots thesis, which itself based its choice on \textcite{Rahman:2011:BIH:2025113.2025157}, but also include new projects like the benchmark proposed by \textcite{5463279}, as well as additional open source projects, and hopefully some projects from different companies, like Volvo, IKEA, Ericsson, and others.

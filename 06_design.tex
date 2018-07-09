@@ -1,0 +1,123 @@
+\section{The Design – Methods and Procedures}
+
+\subsection{Data} %rto: Feynman in his book never went below subsection. It is worth keeping that in mind ;)
+% https://www.amazon.com/Feynman-Lectures-Physics-boxed-set/dp/0465023827
+
+\subsubsection{Required Data}
+
+Things that Linespots needs to run: %rto: rephrase
+
+Basically \textit{git show} output. Commit information that includes the commit age\slash date, if a commit is a bug fix or not and file\slash line changes (adds, deletes, renames, move).This is based on the reference implementation. In theory, information from a bug tracker could be used as well. The actual source code itself is not needed and things like file names and authors could be tokenized instead, as long as they remain unique for later identification. This is a valuable feature since it could be valuable in receiving data from companies and to be able to publish a cleaned version that only has information relevant for Linespots without publishing the code itself.
+
+For comparison with other metrics, these requirements might change as some of those are based on source code properties like object-oriented or complexity metrics. They could still work with a tokenized version of the code that resembles the same size and structure but not the actual source code itself.
+
+\todo{This is a threat to validity, with only one vcs used}
+Right now, only git is supported but in theory anything that allows access to the needed information could work.
+
+
+\subsubsection{Data Sources}
+
+Template based on \cite{6035727}.
+
+Sources:  industrial, open source, NASA, Promise
+%rto use terminology consistently, i.e., is it sources, projects, operations, systems, etc.?
+There are different sources and kinds of projects available to choose from.
+Some of them are more easily accessible than others. Starting with the easiest to access, there are open source projects. These span a wide range of domains and can be small one-person operations or large, industry like systems (see Apache, Gnome, Red Hat, Eclipse).
+
+Going through the PROMISE repository, it is not offering the information that Linespots needs to run. %rto: ref and rephrase.
+
+Alternatively, projects from companies that are not available open source could be used, but are usually harder to access and I might not be able to publish the data together with the thesis.
+
+
+\subsubsection{Project Domains}
+\todo{It would be great if there was a list or definition of what domains exist but I haven't found any} %rto: there isn't one.
+
+First, there are different levels of domains. For example something like:
+Hobbyist, Open Source, Industry Open Source, Industry Closed Source. 
+
+Then, inside of each (or some) of those, there are again domains like telecommunication, customer support, business intelligence, text editors, email, file managers etc. %rto I would call telecom a domain, but not a file manager... Clarify and clean
+This list in itself again has different levels of abstraction, with telecommunication including a lot of different software used in the telecommunication domain, while text editors is already a lot more confined. %rto: same here, text editor is an application\slash software, telecom is a domain.
+
+The choice of domain is not a simple one, as it is hard to know if differences come from the domain of choice, or if that is just a proxy for something else, e.g., development technique (say agile, waterfall, \ldots).
+
+Due to the lack of a proper definition and boundaries, I have decided to choose the projects from as different areas as possible and combining them into domains, depending on their properties. %rto areas, domains, decide what term to use.
+
+\subsubsection{Sample Size}
+
+A bigger sample size will give more reliable results. Thus, I will add projects in iteration to the thesis allowing for the highest sample size achievable in the given time.
+\todo{They sadly don't argue for their sample size} Based on the work of \textcite{5463279}, I will try to find at least five projects per domain. This would already be an improvement over a lot of reported results in the bug prediction world, as many studies work on only a single project. %rto: good enough.
+
+
+\subsubsection{Possible Projects}
+
+Based on the benchmark proposed by\textcite{6035727}:
+\begin{itemize}
+    \item Eclipse JDT Core
+    \item Eclipse PDE UI
+    \item Equinox framework
+    \item Mylyn
+    \item Apache Lucene
+\end{itemize}
+
+Based on the initial thesis and BugCache \textcite{Rahman:2011:BIH:2025113.2025157}:
+\begin{itemize}
+    \item Apache httpd
+    \item Gimp
+    \item Apache Lucene-solr
+    \item Nautilus
+    \item Evolution
+\end{itemize}
+ 
+All of the above are written in Java. %rto: threat. Mention it and explain why it's not a biggy.
+ 
+Based on other papers:
+\begin{itemize}
+    \item Apache, Columba, Gaim, Gforge, Jedit, Mozilla Firefox, Eclipse, Plone, PostgreSQL \cite{5431727}
+    \item Coala \cite{scholz2016line}
+\end{itemize}
+
+One problem is that a lot of papers will only report using  ``the Mozilla project'', actually meaning Mozilla Firefox or ``Apache'' meaning the Apache httpd project. Sometimes this can be cleared up if links to repositories exist or if there is more information elsewhere in the paper but sometimes I can only guess which of the many projects of these big foundations the paper is talking about. %rto: contact authors also!
+This could be easily circumvented by giving the full name of the project together with a small description of it and a link to the source code. Even if the link might not be active anymore in the future, the full name and description would allow to look for the new location. %rto: clarify that you will assemble data and make a reproducibility package using Docker.
+
+\subsection{Comparing Metrics}
+\label{subsec:comparing_metric}
+
+%rto: rephrase. I know that these are only thoughts, but you might as well write it properly. Don't use won't should've, don't, etc. but write it out properly.
+Options are object-oriented metrics, but they only work on object-oriented languages, so I could only use them on part of the projects.
+%rto: The above and other things should be mentioned in delimitations of the project (haven't read it yet ;)
+
+A lot of source code metrics are usually applied to classes as well, which again would not work for everything. Some could still be used, e.g., how often a function is called elsewhere, although this implies the existence of functions.
+
+Entropy of changes and entropy of source code metrics also only works if we have some unit of code we can calculate a metric for and then measure the change between revisions. This is usually done on classes or modules.
+Code churn works in a similar way, where we would need units we can measure churn for.
+
+One workaround for some of these could be to apply them file-wise and just propose files, as a lot of studies are doing. This would inherently favour Linespots due to the lower level of granularity though.
+
+After some research it seems that Linespots is the first language-agnostic metric that works on the line level granularity. Everything else I found so far either works on a class\slash module level, which needs an object-oriented language, or proposes whole files, which automatically reduces cost effectiveness.
+
+Based on this, I could try to use the same algorithm Linespots uses and apply it to some other metrics, like general code churn, developer experience, and so on. Scoring lines based on something. This would only work with process metrics but might be a valuable comparison and another novel approach taken in this thesis.
+
+\subsection{Evaluation Criteria}
+
+\begin{itemize}
+    \item For classification: Confusion Matrix (accuracy, precision, recall, type I/II errors)
+    \item For Ranking/continuous: ROC, CE
+    \item Out of sample prediction
+\end{itemize}
+\cite{ARISHOLM20102}
+
+\begin{itemize}
+    \item For classification: Confusion Matrix (accuracy, precision, recall, type I/II errors, F1 score)
+    \item For Ranking/continuous: ROC, CE
+    %\item Sigma of Difference between predicted and observed: Spearmans, Pearsons, Chi Square
+    \item Error measures: Average relative error (ARE)
+    \item out of sample prediction
+\end{itemize}
+\cite{6035727}
+
+For cost-effectiveness, it could be interesting to not only report it as \% of bugs vs.\ \% of LOC but also as \# of bugs vs.\ \# of LOC as the percentage version might skew the results for large projects.
+
+A lot of existing papers choose metrics that make their algorithms seem better than they are. This can happen if the accuracy of a classifier is reported but the classes are unbalanced. If there are no bugs in 90\% of the files in a project, a naive classification could classify all files as bug-less and achieve a 90\% accuracy score. This classifier would sound very good while being completely useless.
+To prevent this, I will compare my results to those of a naive implementation (Cohen's kappa) and use different metrics that measure different aspects of the performance. %rto; Bayesian data analysis.
+
+I will use cost-effectiveness as the most meaningful metric to measure performance, as it reflects the real life scenario of a review\slash audit the best, works with the ranking that is the natural output of Linespots, and works around the issue of unbalanced classes if applied correctly.
